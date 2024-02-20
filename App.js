@@ -1,31 +1,64 @@
 import * as React from "react";
-import { View, Text, Pressable } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import StandsScreen from "./screens/stands";
+import Button from "./components/Button";
+import tailwind from "twrnc";
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: "#f97316",
+    background: "white",
+  },
+};
 
 const Stack = createNativeStackNavigator();
 
 function HomeScreen({ navigation }) {
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Pressable
-        className="bg-orange-500 active:bg-orange-600 rounded-md text-sm h-10 px-4 py-2 inline-flex items-center justify-center"
-        onPress={() => navigation.navigate("Stands")}
+    <View style={tailwind.style("flex-1 items-center justify-center")}>
+      <Button
+        onPress={() => {
+          navigation.navigate("Stands");
+        }}
       >
-        <Text className="text-white">Go to Stands</Text>
-      </Pressable>
+        Go to Stands
+      </Button>
     </View>
   );
 }
 
 function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Stands" component={StandsScreen} />
-      </Stack.Navigator>
+    <NavigationContainer theme={theme}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <Stack.Navigator
+          screenOptions={{
+            headerShadowVisible: false,
+          }}
+        >
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              headerLargeTitle: true,
+              headerTitle: "Scouting",
+            }}
+          />
+          <Stack.Screen
+            name="Stands"
+            component={StandsScreen}
+            options={{
+              headerShown: true,
+              headerLargeTitle: true,
+            }}
+          />
+        </Stack.Navigator>
+      </GestureHandlerRootView>
     </NavigationContainer>
   );
 }
