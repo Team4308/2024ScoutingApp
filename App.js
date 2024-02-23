@@ -1,11 +1,12 @@
-import * as React from "react";
 import { View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import StandsScreen from "./screens/stands";
 import Button from "./components/Button";
 import tailwind from "twrnc";
+import { useState } from "react";
+import { StateProvider } from "./StateContext";
+import StandsScreen from "./screens/stands";
 
 const theme = {
   ...DefaultTheme,
@@ -33,31 +34,35 @@ function HomeScreen({ navigation }) {
 }
 
 function App() {
+  const [penalties, setPenalties] = useState(0);
+
   return (
     <NavigationContainer theme={theme}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <Stack.Navigator
-          screenOptions={{
-            headerShadowVisible: false,
-          }}
-        >
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              headerLargeTitle: true,
-              headerTitle: "Scouting",
+        <StateProvider value={{ penalties, setPenalties }}>
+          <Stack.Navigator
+            screenOptions={{
+              headerShadowVisible: false,
             }}
-          />
-          <Stack.Screen
-            name="Stands"
-            component={StandsScreen}
-            options={{
-              headerShown: true,
-              headerLargeTitle: true,
-            }}
-          />
-        </Stack.Navigator>
+          >
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{
+                headerLargeTitle: true,
+                headerTitle: "Scouting",
+              }}
+            />
+            <Stack.Screen
+              name="Stands"
+              component={StandsScreen}
+              options={{
+                headerShown: true,
+                headerLargeTitle: true,
+              }}
+            />
+          </Stack.Navigator>
+        </StateProvider>
       </GestureHandlerRootView>
     </NavigationContainer>
   );

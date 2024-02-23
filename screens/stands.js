@@ -1,10 +1,11 @@
-import * as React from "react";
+import React, { useContext } from 'react';
 import { View, Text } from "react-native";
 import Button from "../components/Button";
+import StateContext from '../StateContext';
 import tailwind from "twrnc";
 
 export default function Stands() {
-  const [penalties, setPenalties] = React.useState(0);
+ const { penalties, setPenalties } = useContext(StateContext);
 
   return (
     <View style={tailwind.style("flex-1 items-center justify-center")}>
