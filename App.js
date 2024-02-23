@@ -35,11 +35,14 @@ function HomeScreen({ navigation }) {
 
 function App() {
   const [penalties, setPenalties] = useState(0);
+  const [isChecked, setChecked] = useState(false);
 
   return (
     <NavigationContainer theme={theme}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <StateProvider value={{ penalties, setPenalties }}>
+        <StateProvider
+          value={{ penalties, setPenalties, isChecked, setChecked }}
+        >
           <Stack.Navigator
             screenOptions={{
               headerShadowVisible: false,
