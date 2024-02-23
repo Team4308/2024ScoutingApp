@@ -12,13 +12,16 @@ export default function Stands() {
   return (
     <View style={tailwind.style("flex-1 items-center justify-center")}>
       <View style={tailwind.style("flex-col items-center gap-y-8 px-12")}>
-        <View style={tailwind.style("flex flex-row gap-2")}>
-          <Checkbox value={isChecked} onValueChange={setChecked} />
-          <Text style={tailwind.style("text-center font-medium")}>
-            Playoffs
-          </Text>
+        <View style={tailwind.style("flex flex-row gap-8")}>
+          <Text style={tailwind.style("text-center font-medium")}>Match #</Text>
+          <View style={tailwind.style("flex flex-row gap-2")}>
+            <Checkbox value={isChecked} onValueChange={setChecked} />
+            <Text style={tailwind.style("text-center font-medium")}>
+              Playoffs
+            </Text>
+          </View>
         </View>
-        <Text style={tailwind.style("text-2xl text-center font-bold")}>
+        <Text style={tailwind.style("text-xl text-center font-bold")}>
           Penalties
         </Text>
         <View style={tailwind.style("flex items-start justify-start gap-2")}>
@@ -53,7 +56,7 @@ export default function Stands() {
             onPress={() => {
               setPenalties(0);
             }}
-            style={"px-4 py-0.5"}
+            style={"px-4 py-2"}
             textStyle={"text-xs"}
           >
             RESET

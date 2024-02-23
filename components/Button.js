@@ -9,12 +9,11 @@ import Animated, {
 } from "react-native-reanimated";
 import tailwind from "twrnc";
 
-const buttonWrapper =
-  "flex flex-row justify-center items-center px-8 py-2.5 min-h-[36px] bg-slate-950 rounded-[10px]";
+export default function Button({ children, onPress, style, textStyle }) {
+  const buttonWrapper = `flex flex-row justify-center items-center px-8 py-2.5 min-h-[36px] bg-slate-950 rounded-[10px] ${style}`;
 
-const textStyle = "text-sm font-medium text-white text-center";
+  const textWrapper = `text-sm font-medium text-white text-center ${textStyle}`;
 
-export default function Button({ children, onPress, ...props }) {
   const scaleDownAnimation = useSharedValue(1);
   const scaleHandler = Gesture.Tap()
     .onBegin(() => {
@@ -41,7 +40,7 @@ export default function Button({ children, onPress, ...props }) {
               onPress && onPress(); // Call the onPress prop if it exists
             }}
           >
-            <Text style={tailwind.style(textStyle)}>{children}</Text>
+            <Text style={tailwind.style(textWrapper)}>{children}</Text>
           </Pressable>
         </GestureDetector>
       </Animated.View>
