@@ -8,13 +8,13 @@ export default function Stands() {
 
   return (
     <View style={tailwind.style("flex-1 items-center justify-center")}>
-      <View style={tailwind.style("flex-col items-center gap-y-8 w-96")}>
+      <View style={tailwind.style("flex-col items-center gap-y-8 px-12")}>
         <Text style={tailwind.style("text-2xl text-center font-bold")}>
           Penalties
         </Text>
         <View
           style={tailwind.style(
-            "flex-row items-center gap-x-4 bg-slate-100 p-2 rounded-lg"
+            "flex flex-row items-center justify-center gap-x-4 bg-slate-100 p-2 rounded-lg"
           )}
         >
           <Button
@@ -24,9 +24,11 @@ export default function Stands() {
           >
             -
           </Button>
-          <Text style={tailwind.style("text-2xl text-center px-4")}>
-            {penalties}
-          </Text>
+          <View style={tailwind.style("w-16")}>
+            <Text style={tailwind.style("text-2xl text-center px-4")}>
+              {penalties}
+            </Text>
+          </View>
           <Button
             onPress={() => {
               setPenalties(penalties + 1);
