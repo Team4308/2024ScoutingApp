@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { View, Text } from "react-native";
+import React, { useContext, useState } from "react";
+import { View, Text, TextInput } from "react-native";
 import Checkbox from "expo-checkbox";
 import Button from "../components/Button";
 import StateContext from "../StateContext";
@@ -8,12 +8,20 @@ import tailwind from "twrnc";
 export default function Stands() {
   const { penalties, setPenalties, isChecked, setChecked } =
     useContext(StateContext);
+  
+  const [matchNumber, setMatchNumber] = useState('');
 
   return (
-    <View style={tailwind.style("flex-1 items-center justify-center")}>
+    <View style={tailwind.style("flex-1 items-center pt-8")}>
       <View style={tailwind.style("flex-col items-center gap-y-8 px-12")}>
-        <View style={tailwind.style("flex flex-row gap-8")}>
-          <Text style={tailwind.style("text-center font-medium")}>Match #</Text>
+        <View style={tailwind.style("flex flex-row gap-8 items-center")}>
+          <TextInput
+            style={tailwind.style("border rounded p-2 w-24")}
+            keyboardType="numeric"
+            onChangeText={setMatchNumber}
+            value={matchNumber}
+            placeholder="Match #"
+          />
           <View style={tailwind.style("flex flex-row gap-2")}>
             <Checkbox value={isChecked} onValueChange={setChecked} />
             <Text style={tailwind.style("text-center font-medium")}>
