@@ -10,7 +10,7 @@ export default function Stands() {
     useContext(StateContext);
 
   return (
-    <View style={tailwind.style("flex-1 items-center justify-center")}>
+    <View style={tailwind.style("flex-1 items-center pt-8")}>
       <View style={tailwind.style("flex-col items-center gap-y-8 px-12")}>
         <View style={tailwind.style("flex flex-row gap-8")}>
           <Text style={tailwind.style("text-center font-medium")}>Match #</Text>
