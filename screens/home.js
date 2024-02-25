@@ -1,19 +1,20 @@
 import { setStatusBarBackgroundColor, StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView, TextInput, TouchableOpacity, SafeAreaView, Modal, Switch } from 'react-native';
-import React, { useState } from 'react';
-import QRCode from 'react-native-qrcode-svg';
+import React, { useState } from 'react'
+
+
 
 export default function App() {
 
   const [scouterTeamNum, setScouterTeamNum] = useState(0);
   const [scouterName, setScouterName] = useState("");
   const [compName, setCompName] = useState("");
-  const [compNameVisible, setCompNameVisible] = useSate(false);
+  const [compNameVisible, setCompNameVisible] = useState(false);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <ScrollView style={styles.container}>
         {/* Scouter names input */}
-        <Text style={{fontWeight: 'bold', fontSize: 15, marginHorizontal: 10,}}> Scouter names: </Text>
+        <Text style={{fontWeight: 'bold', fontSize: 15, marginHorizontal: 10, marginTop: 50}}> Scouter names: </Text>
             <TextInput
               placeholder="Insert your names..."
               style={{
@@ -28,6 +29,7 @@ export default function App() {
               onChangeText={(value) => setScouterName(value)}
               value={scouterName}
             />
+        {/*Scouter team input*/}
         <Text style={{fontWeight: 'bold', fontSize: 15, marginHorizontal: 10,}}> Scouter team: </Text>
             <TextInput
               placeholder="Insert your team number..."
@@ -45,7 +47,7 @@ export default function App() {
               value={scouterTeamNum}
             />
         <View style ={{ height: 50, flexDirection: 'row', marginVertical: 10, }}>
-          {/* Drivetrain dropdown */}
+          {/* Comp name dropdown */}
           <Text style={{flex: 1, padding: 10, color: 'black', fontSize: 15, fontWeight: 'bold'}}>Competition: </Text>
           <Modal
             animationType='slide'
@@ -61,6 +63,7 @@ export default function App() {
                 marginVertical: 200,
                 marginHorizontal: 10,
                 borderRadius: 15,
+                height: 10,
                 justifyContent: 'center',
               }}
             >
@@ -124,12 +127,40 @@ export default function App() {
               >
                 <Text style = {{color: 'white', fontWeight: 'bold', fontSize: 15,}}>Provincial Championship</Text>
               </TouchableOpacity>
-              </View>
-            </Modal>
-          </View>
+              <TouchableOpacity
+                style={{
+                  backgroundColor: 'dimgray',
+                  borderRadius: 8,
+                  alignItems: 'center',
+                  height: 60,
+                  alignSelf: 'stretch',
+                  justifyContent: 'center',
+                  margin: 10,
+                  flex: 1,
+                }}
+                onPress={() => setCompNameVisible(false)}
+              >
+                <Text style={{color: 'white', fontWeight: 'bold', fontSize: 15,}}>Close Menu</Text>
+              </TouchableOpacity>
+            </View>
+          </Modal>
+          <TouchableOpacity
+            style={{
+              backgroundColor: 'darkred',
+              height: 50,
+              width: 300,
+              padding: 2,
+              flex: 3,
+              marginRight: 30,
+            }}
+            onPress={() => setCompNameVisible(true)}
+          >
+            <Text style={{color: 'white', fontSize: 15, padding: 10, fontWeight: 'bold'}}>{compName}</Text>
+          </TouchableOpacity>
+        </View>
 
       <StatusBar style="auto" />
-    </SafeAreaView>
+    </ScrollView>
   );
 }
 
