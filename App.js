@@ -7,13 +7,15 @@ import tailwind from "twrnc";
 import { useState } from "react";
 import { StateProvider } from "./StateContext";
 import StandsScreen from "./screens/stands";
+import { Image } from "expo-image";
+import { AntDesign } from '@expo/vector-icons';
 
 const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
     primary: "#f97316",
-    background: "white",
+    background: "#020617",
   },
 };
 
@@ -21,13 +23,23 @@ const Stack = createNativeStackNavigator();
 
 function HomeScreen({ navigation }) {
   return (
-    <View style={tailwind.style("flex-1 items-center justify-center")}>
+    <View style={tailwind.style("flex-1 items-center px-10")}>
+      <Image
+        style={tailwind.style("w-full h-74")}
+        source={require('./assets/crescendo.png')}
+        contentFit="contain"
+        transition={1000}
+      />
       <Button
         onPress={() => {
           navigation.navigate("Stands");
         }}
+        bg={"red"}
+        text={"2xl"}
+        style={"px-24 "}
       >
-        Go to Stands
+        {/* <AntDesign name="arrowleft" size={24} /> */}
+        Stands
       </Button>
     </View>
   );
@@ -52,8 +64,10 @@ function App() {
               name="Home"
               component={HomeScreen}
               options={{
-                headerLargeTitle: true,
-                headerTitle: "Scouting",
+                headerTintColor: "white",
+                headerStyle: {
+                  backgroundColor: "#020617",
+                },
               }}
             />
             <Stack.Screen

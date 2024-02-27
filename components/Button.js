@@ -9,10 +9,38 @@ import Animated, {
 } from "react-native-reanimated";
 import tailwind from "twrnc";
 
-export default function Button({ children, onPress, style, textStyle }) {
-  const buttonWrapper = `flex flex-row justify-center items-center px-8 py-2.5 min-h-[36px] bg-slate-950 rounded-[10px] ${style}`;
+const colors = {
+  red: "bg-red-500",
+  blue: "bg-blue-500",
+  green: "bg-green-500",
+  yellow: "bg-yellow-500",
+  gray: "bg-gray-500",
+  sky: "bg-sky-500",
+  teal: "bg-teal-500",
+  emerald: "bg-emerald-500",
+  white: "bg-white",
+}
 
-  const textWrapper = `text-sm font-medium text-white text-center ${textStyle}`;
+const texts = {
+  "sm": "text-sm",
+  "md": "text-md",
+  "lg": "text-lg",
+  "xl": "text-xl px-6",
+  "2xl": "text-2xl px-8",
+  "3xl": "text-3xl",
+  "4xl": "text-4xl",
+  "5xl": "text-5xl",
+  "6xl": "text-6xl",
+}
+
+export default function Button({ children, onPress, style, textStyle, bg, text }) {
+
+  const bgColor = colors[bg] || colors.blue;
+  const textSize = texts[text] || texts.md;
+
+  const buttonWrapper = `flex rounded-full flex-row justify-center items-center px-8 py-2.5 min-h-[36px] ${style} ${bgColor}`;
+
+  const textWrapper = `text-sm font-medium text-white text-center ${textStyle} ${textSize} ${bg == "white" ? "text-black" : ""}`;
 
   const scaleDownAnimation = useSharedValue(1);
   const scaleHandler = Gesture.Tap()
