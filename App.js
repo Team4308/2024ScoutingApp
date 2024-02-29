@@ -35,7 +35,7 @@ function HomeScreen({ navigation }) {
           navigation.navigate("Stands");
         }}
         bg={"red"}
-        text={"2xl"}
+        text={"l"}
         style={"px-24 "}
       >
         {/* <AntDesign name="arrowleft" size={24} /> */}
