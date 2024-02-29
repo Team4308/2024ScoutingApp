@@ -1,15 +1,15 @@
-import { View } from "react-native";
+import React, { useState } from "react";
+import { View, Image } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Button from "./components/Button";
 import tailwind from "twrnc";
-import { useState } from "react";
 import { StateProvider } from "./StateContext";
 import StandsScreen from "./screens/stands";
-import { Image } from "expo-image";
 import { AntDesign } from '@expo/vector-icons';
 
+// Define custom theme
 const theme = {
   ...DefaultTheme,
   colors: {
@@ -19,42 +19,40 @@ const theme = {
   },
 };
 
+// Stack navigator instance
 const Stack = createNativeStackNavigator();
 
-function HomeScreen({ navigation }) {
+// Home screen component
+const HomeScreen = ({ navigation }) => {
   return (
     <View style={tailwind.style("flex-1 items-center px-10")}>
       <Image
         style={tailwind.style("w-full h-74")}
         source={require('./assets/crescendo.png')}
-        contentFit="contain"
-        transition={1000}
+        resizeMode="contain" // Adjusted here
       />
       <Button
-        onPress={() => {
-          navigation.navigate("Stands");
-        }}
+        onPress={() => navigation.navigate("Stands")}
         bg={"red"}
         text={"l"}
         style={"px-24 "}
       >
-        {/* <AntDesign name="arrowleft" size={24} /> */}
         Stands
       </Button>
     </View>
   );
-}
+};
 
-function App() {
+// App component
+const App = () => {
+  // State variables
   const [penalties, setPenalties] = useState(0);
   const [isChecked, setChecked] = useState(false);
 
   return (
     <NavigationContainer theme={theme}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <StateProvider
-          value={{ penalties, setPenalties, isChecked, setChecked }}
-        >
+        <StateProvider value={{ penalties, setPenalties, isChecked, setChecked }}>
           <Stack.Navigator
             screenOptions={{
               headerShadowVisible: false,
@@ -83,6 +81,6 @@ function App() {
       </GestureHandlerRootView>
     </NavigationContainer>
   );
-}
+};
 
 export default App;
