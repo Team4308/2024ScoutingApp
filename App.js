@@ -15,7 +15,7 @@ const theme = {
   colors: {
     ...DefaultTheme.colors,
     primary: "#f97316",
-    background: "#020617",
+    background: "#1A1A1A",
   },
 };
 
@@ -64,7 +64,7 @@ const App = () => {
               options={{
                 headerTintColor: "white",
                 headerStyle: {
-                  backgroundColor: "#020617",
+                  backgroundColor: "#1A1A1A",
                 },
               }}
             />
